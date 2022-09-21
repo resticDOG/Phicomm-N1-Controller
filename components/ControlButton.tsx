@@ -1,4 +1,4 @@
-import { Button, StyleSheet, TouchableOpacity } from 'react-native';
+import { Pressable, StyleSheet, TouchableOpacity } from 'react-native';
 
 import Colors from '../constants/Colors';
 import { MonoText } from './StyledText';
@@ -25,18 +25,27 @@ export enum Keycode {
 
 export default function ControlButton({title = '', code}: {title: string, code: Keycode}) {
   return (
-    <View style={styles.container} >
-      <Button title={title} onPress={() => press(code)} />
-    </View>
+    <Pressable style={styles.button} onPress={() => press(code)} >
+      <Text style={styles.text} >{ title }</Text>
+    </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   button: {
-    height: 10,
-    width: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 4,
+    elevation: 3,
+    backgroundColor: 'black',
+  },
+  text: {
+    fontSize: 16,
+    lineHeight: 21,
+    fontWeight: 'bold',
+    letterSpacing: 0.25,
+    color: 'white',
   },
 });
