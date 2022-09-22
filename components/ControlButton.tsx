@@ -1,8 +1,8 @@
 import { FontAwesome } from '@expo/vector-icons';
-import { Pressable, StyleProp, StyleSheet } from 'react-native';
+import { Pressable, StyleProp, StyleSheet, Vibration } from 'react-native';
 
 import Colors from '../constants/Colors';
-import { Text, View } from './Themed';
+import { Text } from './Themed';
 import { press } from '../api/control';
 
 export enum Keycode {
@@ -12,8 +12,8 @@ export enum Keycode {
   HOME = 3,
   MENU = 82,
 
-  VOLUME_UP = 25,
-  VOLUME_DOWN = 24,
+  VOLUME_UP = 24,
+  VOLUME_DOWN = 25,
   MUTE = 164,
   
   UP = 19,
@@ -33,7 +33,16 @@ type ControlButtonProps = {
 
 export default function ControlButton({title = '', code, icon, color =  '#fff', style}: ControlButtonProps) {
   return (
-    <Pressable style={[styles.button, style]} onPress={() => press(code)} >
+    <Pressable 
+      style={({ pressed }) => [{ 
+          backgroundColor: pressed ? Colors.light.controlPressedBgColor : Colors.light.controlBgColor
+        }, 
+        styles.button, 
+        style
+      ]} 
+      onPress={() => handlePress(code, false)} 
+      onLongPress={() => handlePress(code, true)} 
+    >
       {
         icon 
         ? <FontAwesome
@@ -47,6 +56,11 @@ export default function ControlButton({title = '', code, icon, color =  '#fff', 
   );
 }
 
+function handlePress(code: Keycode, longPress: boolean) {
+  Vibration.vibrate(20)
+  press(code, longPress)
+}
+
 const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
@@ -55,7 +69,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 32,
     borderRadius: 4,
     elevation: 3,
-    backgroundColor: '#183153',
   },
   text: {
     fontSize: 16,

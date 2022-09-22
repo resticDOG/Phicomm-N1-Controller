@@ -1,6 +1,8 @@
 const tintColorLight = '#2f95dc';
 const tintColorDark = '#fff';
 const toastBgColor = '#7766e8'
+const controlBgColor = '#183153'
+const controlPressedBgColor = tintColorLight
 
 export default {
   light: {
@@ -10,6 +12,8 @@ export default {
     tabIconDefault: '#ccc',
     tabIconSelected: tintColorLight,
     toastBgColor,
+    controlBgColor,
+    controlPressedBgColor,
   },
   dark: {
     text: '#fff',

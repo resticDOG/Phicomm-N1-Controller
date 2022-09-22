@@ -19,9 +19,9 @@ export default function ControlPanel() {
       <ControlDirection />
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <View style={[styles.center, styles.spaceEvenly]}>
-        <ControlButton title="Menu" code={Keycode.MENU} />
-        <ControlButton title="Home" code={Keycode.HOME} />
-        <ControlButton title="Back" code={Keycode.BACK} />
+        <ControlButton title="Menu" icon="bars" code={Keycode.MENU} />
+        <ControlButton title="Home" icon="home" code={Keycode.HOME} />
+        <ControlButton title="Back" icon="arrow-left" code={Keycode.BACK} />
       </View>
     </View>
   );
@@ -33,7 +33,7 @@ export function ControlDirection() {
       <ControlButton style={styles.direction} title="↑" icon="caret-up" code={Keycode.UP} />
       <View style={styles.center}>
         <ControlButton style={styles.direction} title="←" icon="caret-left" code={Keycode.LEFT} />
-        <ControlButton style={[styles.direction, styles.ok]} title="OK" code={Keycode.OK} />
+        <ControlButton style={[styles.direction, styles.ok]} title="OK" icon="circle" code={Keycode.OK} />
         <ControlButton style={styles.direction} title="→" icon="caret-right" code={Keycode.RIGHT} />
       </View>
       <ControlButton style={styles.direction} title="↓" icon="caret-down" code={Keycode.DOWN} />
@@ -45,7 +45,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    // justifyContent: 'space-around',
     backgroundColor: '#fefefe',
   },
   containerDirection: {
