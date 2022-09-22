@@ -23,3 +23,8 @@ export default {
     tabIconSelected: tintColorDark,
   },
 };
+
+export const pressDurations = {
+  SHORT: 20,
+  LONG: 20 * 3,
+}

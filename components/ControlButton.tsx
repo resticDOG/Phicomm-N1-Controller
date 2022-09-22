@@ -1,9 +1,10 @@
 import { FontAwesome } from '@expo/vector-icons';
-import { Pressable, StyleProp, StyleSheet, Vibration } from 'react-native';
+import { Pressable, StyleProp, StyleSheet } from 'react-native';
 
 import Colors from '../constants/Colors';
 import { Text } from './Themed';
-import { press } from '../api/control';
+import { press } from '../api/phicomm';
+import { pressVibrate } from '../utils'
 
 export enum Keycode {
   POWER = 26,
@@ -57,7 +58,7 @@ export default function ControlButton({title = '', code, icon, color =  '#fff', 
 }
 
 function handlePress(code: Keycode, longPress: boolean) {
-  Vibration.vibrate(20)
+  pressVibrate(longPress)
   press(code, longPress)
 }
 

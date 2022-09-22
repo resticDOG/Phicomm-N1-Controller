@@ -7,3 +7,11 @@ export const press = (keycode: Keycode, longclick: boolean) => {
     longclick,
   })
 }
+
+export const getStatus = async(): Promise<{ name: string,  sn: string, online: number} | undefined> => {
+  try {
+    return request('v1/status', 'GET')
+  } catch (error) {
+    return;
+  }
+}
