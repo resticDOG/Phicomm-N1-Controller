@@ -1,7 +1,7 @@
-import { Pressable, StyleSheet, TouchableOpacity } from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
+import { Pressable, StyleProp, StyleSheet } from 'react-native';
 
 import Colors from '../constants/Colors';
-import { MonoText } from './StyledText';
 import { Text, View } from './Themed';
 import { press } from '../api/control';
 
@@ -23,10 +23,26 @@ export enum Keycode {
   OK = 23,
 }
 
-export default function ControlButton({title = '', code}: {title: string, code: Keycode}) {
+type ControlButtonProps = {
+  title: string
+  code: Keycode
+  icon?: React.ComponentProps<typeof FontAwesome>['name']
+  color?: string
+  style?: StyleProp<any>
+}
+
+export default function ControlButton({title = '', code, icon, color =  '#fff', style}: ControlButtonProps) {
   return (
-    <Pressable style={styles.button} onPress={() => press(code)} >
-      <Text style={styles.text} >{ title }</Text>
+    <Pressable style={[styles.button, style]} onPress={() => press(code)} >
+      {
+        icon 
+        ? <FontAwesome
+            name={icon}
+            size={25}
+            color={color}
+          />
+        : <Text style={styles.text} >{ title }</Text>
+      }
     </Pressable>
   );
 }
@@ -39,7 +55,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 32,
     borderRadius: 4,
     elevation: 3,
-    backgroundColor: 'black',
+    backgroundColor: '#183153',
   },
   text: {
     fontSize: 16,
