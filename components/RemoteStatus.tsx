@@ -1,8 +1,9 @@
 import { FontAwesome } from '@expo/vector-icons';
 import { useState, useEffect } from 'react';
-import { View, Text as DefaultText, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { getStatus } from '../api/phicomm';
 import { GET_STATUS_FETCH_INTERVAL } from '../constants';
+import { Text, View } from './Themed';
 
 export default function RemoteStatus() {
   const [online, setOnline] = useState(false)
@@ -34,7 +35,7 @@ export default function RemoteStatus() {
   return (
     <View style={styles.container}>
       <FontAwesome name={online ? 'check-circle' : 'times-circle' } size={20} color={online ? 'green' : 'red'} />
-      <DefaultText> {title}</DefaultText>
+      <Text> {title} </Text>
     </View>
   )
 }

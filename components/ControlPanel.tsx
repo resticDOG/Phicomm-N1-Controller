@@ -1,8 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 import ControlButton, { Keycode } from '../components/ControlButton';
-import { Text, View } from '../components/Themed';
-import colors from '../constants/Colors';
+import { View } from '../components/Themed';
 
 export default function ControlPanel() {
   return (

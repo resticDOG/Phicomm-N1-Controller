@@ -8,10 +8,24 @@ export const press = (keycode: Keycode, longclick: boolean) => {
   })
 }
 
-export const getStatus = async(): Promise<{ name: string,  sn: string, online: number} | undefined> => {
-  try {
-    return request('v1/status', 'GET')
-  } catch (error) {
-    return;
-  }
+export const getStatus = async (): Promise<{ name: string,  sn: string, online: number} | undefined> => {
+  return request('v1/status', 'GET')
+}
+
+export type AppListResponse = {
+  apps: Array<{
+          appid: string,  
+          activity: string, 
+          name: string, 
+          package: string
+        }>
+  count: number,
+}
+
+export const getAppList = async (): Promise<AppListResponse | undefined> => {
+  return request('v1/applist', 'GET')
+}
+
+export const openApp = async ( params :{ package: string, activity: string }) => {
+  request('v1/application', 'POST', params)
 }
