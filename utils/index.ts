@@ -1,6 +1,7 @@
 import Toast from "react-native-root-toast";
 import { Vibration } from 'react-native'
-import Colors, { pressDurations } from "../constants/Colors";
+import Colors from "../constants/Colors";
+import { pressDurations } from '../constants'
 
 export function showToast(message: string) {
   Toast.show
