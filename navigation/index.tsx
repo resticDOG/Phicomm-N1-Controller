@@ -15,7 +15,7 @@ import useColorScheme from '../hooks/useColorScheme';
 import AppListScreen from '../screens/AppListScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import ControlScreen from '../screens/ControlScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
+import SettingsScreen from '../screens/SettingsScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 import RemoteStatus from '../components/RemoteStatus';
@@ -82,7 +82,7 @@ function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="TabTwo"
-        component={TabTwoScreen}
+        component={SettingsScreen}
         options={{
           title: '设置',
           tabBarIcon: ({ color }) => <TabBarIcon name="gear" color={color} />,
