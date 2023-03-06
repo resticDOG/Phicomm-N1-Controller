@@ -4,7 +4,6 @@ import Colors from "../constants/Colors";
 import { pressDurations } from '../constants'
 
 export function showToast(message: string) {
-  Toast.show
   Toast.show(message, { 
     duration: Toast.durations.SHORT,
     shadow: true,

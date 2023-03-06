@@ -1,23 +1,39 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, SafeAreaView, ActivityIndicator, StatusBar, StyleSheet, TouchableOpacity, TextInput } from "react-native";
-import { AppListResponse, getAppList, openApp } from "../api/phicomm";
+import { Button, SafeAreaView, Switch, StatusBar, StyleSheet, TouchableOpacity, TextInput } from "react-native";
 import { Text, View } from '../components/Themed'
+import { saveData, getData } from '../utils/db'
+import { DEFAULT_SETTINGS, APP_STATE_KEY } from '../constants'
 
 const AppListScreen = () => {
   
+  const [ipAddress, onChangeIpAddress] = useState('192.168.5.184')
+
+  function onChangeText(text: string) {
+    onChangeIpAddress(text) 
+  }
+
+  function onPress() {
+    saveData(APP_STATE_KEY, {
+      ...DEFAULT_SETTINGS,
+      ipAddress,
+    })
+  }
 
   return (
     <View style={styles.container}>
       <SafeAreaView >
         <View style={styles.inputInline}>
-          <Text>盒子IP地址</Text>
+          <Text style={styles.label}>盒子IP地址</Text>
           <TextInput 
             style={styles.inputText} 
-            placeholder="盒子IP地址"
-            keyboardType="numeric" 
+            onChangeText={onChangeText}
+            placeholder="请输入盒子IP地址"
+            value={ipAddress}
           />
         </View>
-        
+        <View style={styles.button}>
+          <Button title="保存" onPress={onPress} />
+        </View>
       </SafeAreaView>
     </View>
     
@@ -30,27 +46,25 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     marginTop: StatusBar.currentHeight || 0,
   },
+  label: {
+    width: 90,
+    paddingLeft: 20,
+  },
   inputInline: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between'
   },
   inputText: {
-    width: '100%',
-    padding: 10
+    alignSelf: 'flex-end',
+    width: 220,
+    paddingLeft: 10,
   },
-  item: {
-    padding: 20,
-    marginVertical: 2,
-    marginHorizontal: 16,
-    borderRadius: 10,
-  },
-  header: {
-    textAlign: 'center',
-    marginBottom: 8,
-  },
-  title: {
-    fontSize: 16,
-    textAlign: 'center'
-  },
+  button: {
+    marginTop: 10,
+    alignSelf: 'center',
+    width: '90%'
+  }
 });
 
 export default AppListScreen;

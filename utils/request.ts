@@ -1,19 +1,19 @@
 import { showToast } from ".";
-
-const DOMAIN = '192.168.5.180'
+import { APP_STATE_KEY } from '../constants'
+import { getData } from '../utils/db'
 
 export async function request(uri: string, method: 'GET' | 'POST' = 'GET', data?: object): Promise<any> {
   try {
-    if (!DOMAIN) {
+    const settings = await getData(APP_STATE_KEY)
+    if (!settings?.ipAddress) {
       showToast('未设置ip')
       return
     }
-    const response = await fetch(`http://${DOMAIN}:8080/${uri}`, {
+    const response = await fetch(`http://${settings.ipAddress}:8080/${uri}`, {
       method: method,
       body: JSON.stringify(data)
     })
     const json = await response.json()
-    console.log(json);
     return json
   } catch (error) {
     showToast('按键事件错误')
