@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "React-Native-TailWindCSS",
-    "slug": "React-Native-TailWindCSS",
-    "version": "1.0.0",
+    "name": "N1-Controller",
+    "slug": "n1-controller",
+    "version": "0.0.1",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
@@ -25,10 +25,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.linkzz.n1controller"
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "d3a8380e-e295-4044-957f-c96f960c842e"
+      }
     }
   }
 }
