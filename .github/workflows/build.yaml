@@ -38,6 +38,7 @@ jobs:
       - name: Build android preview and download artifacts
         run: |
           apk_url=$(eas build --platform android --profile preview --non-interactive | grep ".apk")
+          echo -e "DEBUG: apk url is: $apk_url"
           curl -o debug.apk $apk_url
 
       - name: Upload apk
