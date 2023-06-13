@@ -35,5 +35,13 @@ jobs:
       - name: Install dependencies
         run: yarn install --immutable
 
-      - name: Build android preview
-        run: eas build --platform android --profile preview --non-interactive
+      - name: Build android preview and download artifacts
+        run: |
+          apk_url=$(eas build --platform android --profile preview --non-interactive | grep ".apk")
+          curl -o debug.apk $apk_url
+
+      - name: Upload apk
+        uses: actions/upload-artifact@v3
+        with:
+          name: debug.apk
+          path: debug.apk
